@@ -182,7 +182,6 @@ int LoadTextures()
     }
     return Status;
 }
-//////////////////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////Mengubah ukuran tampilan window//////////////////////////////////////////
 GLvoid ReSizeGLScene(GLsizei width, GLsizei height)		
@@ -251,8 +250,107 @@ GLint DrawGLScene(GLvoid)									// Here's Where We Do All The Drawing
 	glEnable(GL_LIGHTING);
 	//AKHIR MEMBUAT BACKGROUND
 
+//***********************************************************//
+
+	//MEMBUAT PLANET MARS
+    glLoadIdentity();
+    glBindTexture(GL_TEXTURE_2D, texture[5]);
+    glTranslatef(-2.6f,-1.8f,-5);
+    glRotatef(90,1,0,0);
+    glRotatef(rotateobiekt2,0,0,1);
+    gluSphere(Obiekt1, 0.9, 20,20);	
+	//AKHIE MEMBUAT PLANET MARS
+
+//***********************************************************//
+
+
+	//MEMBUAT PLANET MERKURY
+    glLoadIdentity();
+    glTranslatef(4.5,3.5,-10);
+    glBindTexture(GL_TEXTURE_2D, texture[7]);
+    glRotatef(rotateobiekt2,1,1,0);
+    gluSphere(Obiekt1, 0.1,20,20);
+	//AKHIR MEMBUAT MERKURY
+
+//***********************************************************//
+
+	//MEMBUAT PLANET SATURNUS
+	glLoadIdentity();
+	glDisable(GL_LIGHTING);
+	glTranslatef(0.60f, 0.35f,-2.8f);
+	glRotatef(20,0,0,1);
+
+	glDisable(GL_DEPTH_TEST);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_DST_COLOR, GL_ZERO);
+	glBindTexture(GL_TEXTURE_2D, texture[10]);
+	glScalef(0.1f,0.1f,0.1f);
+	glBegin(GL_QUADS);
+        glTexCoord2f(0.0 ,  0.0);  glVertex3f(-1.0, -1.0, 0.0);
+        glTexCoord2f(1.0 ,  0.0);  glVertex3f(1.0,  -1.0, 0.0);
+        glTexCoord2f(1.0,   1.0);   glVertex3f(1.0,   1.0, 0.0);
+        glTexCoord2f(0.0,   1.0);   glVertex3f(-1.0,  1.0, 0.0);
+    glEnd();
+
+	glBlendFunc(GL_ONE, GL_ONE);
 
 	
+	glBindTexture(GL_TEXTURE_2D, texture[11]);
+    glBegin(GL_QUADS);
+        glTexCoord2f(0.0 ,  0.0);  glVertex3f(-1.0, -1.0, 0.0);
+        glTexCoord2f(1.0 ,  0.0);  glVertex3f(1.0,  -1.0, 0.0);
+        glTexCoord2f(1.0,   1.0);   glVertex3f(1.0,   1.0, 0.0);
+        glTexCoord2f(0.0,   1.0);   glVertex3f(-1.0,  1.0, 0.0);
+    glEnd();
+	glEnable(GL_DEPTH_TEST);
+	glDisable(GL_BLEND);
+	glEnable(GL_LIGHTING);
+	//AKHIR MEMBUAT PLANET SATURNUS
+	
+//***********************************************************//
+	
+	//ONEMORE
+	glLoadIdentity();
+	
+	glTranslatef(1.8f, 1.0f, -8);
+	
+	glDisable(GL_LIGHTING);
+	glEnable(GL_BLEND);
+	glColor4f(1,1,1, alpha);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+
+	glRotatef(ro2,0,0,1);
+	glBindTexture(GL_TEXTURE_2D, texture[12]);
+    glBegin(GL_QUADS);
+        glTexCoord2f(0.0 ,  0.0);  glVertex3f(-1.0, -1.0, 0.0);
+        glTexCoord2f(1.0 ,  0.0);  glVertex3f(1.0,  -1.0, 0.0);
+        glTexCoord2f(1.0,   1.0);   glVertex3f(1.0,   1.0, 0.0);
+        glTexCoord2f(0.0,   1.0);   glVertex3f(-1.0,  1.0, 0.0);
+    glEnd();
+	
+	glRotatef(ro,0,0,1);
+	glBegin(GL_QUADS);
+        glTexCoord2f(0.0 ,  0.0);  glVertex3f(-1.0, -1.0, 0.0);
+        glTexCoord2f(1.0 ,  0.0);  glVertex3f(1.0,  -1.0, 0.0);
+        glTexCoord2f(1.0,   1.0);   glVertex3f(1.0,   1.0, 0.0);
+        glTexCoord2f(0.0,   1.0);   glVertex3f(-1.0,  1.0, 0.0);
+    glEnd();
+
+	glDisable(GL_BLEND);	
+	glColor4f(1,1,1,1);
+	//THAT'S IT
+	
+	alpha+=alphaplus;
+
+	if(alpha>0.5)
+		alphaplus=-alphaplus;
+	if(alpha<0.0)
+		alphaplus=-alphaplus;
+
+	ro2+=0.1f;
+	ro+=0.05f;
+
+//***********************************************************//
 	glLoadIdentity();	
 	
 	glTranslatef(LightPos[0], LightPos[1], LightPos[2]);		// Position The Sphere
