@@ -337,6 +337,42 @@ GLint DrawGLScene(GLvoid)									// Here's Where We Do All The Drawing
 	glDisable(GL_BLEND);
 	glEnable(GL_LIGHTING);
 	//AKHIR MEMBUAT PLANET SATURNUS
+
+//***********************************************************//
+
+	//MENGGAMBAR SATELITE
+	glLoadIdentity();
+	glDisable(GL_LIGHTING);
+
+	glTranslatef(SatelitePos[0], SatelitePos[1], SatelitePos[2]);		// Position The Satelite
+	glRotatef(rotsat,0,0,1);
+	glDisable(GL_DEPTH_TEST);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_DST_COLOR, GL_ZERO);
+	glBindTexture(GL_TEXTURE_2D, texture[8]);
+	glScalef(0.3f,0.3f,0.3f);
+	glBegin(GL_QUADS);
+        glTexCoord2f(0.0 ,  0.0);  glVertex3f(-1.0, -1.0, 0.0);
+        glTexCoord2f(1.0 ,  0.0);  glVertex3f(1.0,  -1.0, 0.0);
+        glTexCoord2f(1.0,   1.0);   glVertex3f(1.0,   1.0, 0.0);
+        glTexCoord2f(0.0,   1.0);   glVertex3f(-1.0,  1.0, 0.0);
+    glEnd();
+
+	glBlendFunc(GL_ONE, GL_ONE);
+
+	glBindTexture(GL_TEXTURE_2D, texture[9]);
+	    glBegin(GL_QUADS);
+        glTexCoord2f(0.0 ,  0.0);  glVertex3f(-1.0, -1.0, 0.0);
+        glTexCoord2f(1.0 ,  0.0);  glVertex3f(1.0,  -1.0, 0.0);
+        glTexCoord2f(1.0,   1.0);   glVertex3f(1.0,   1.0, 0.0);
+        glTexCoord2f(0.0,   1.0);   glVertex3f(-1.0,  1.0, 0.0);
+    glEnd();
+	glEnable(GL_DEPTH_TEST);
+	glDisable(GL_BLEND);
+	glEnable(GL_LIGHTING);
+	//AKHIR MENGGAMBAR SATELITE
+
+//***********************************************************//
 	
 	//ONEMORE
 	glLoadIdentity();
