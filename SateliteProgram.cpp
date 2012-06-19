@@ -182,6 +182,7 @@ int LoadTextures()
     }
     return Status;
 }
+//////////////////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////Mengubah ukuran tampilan window//////////////////////////////////////////
 GLvoid ReSizeGLScene(GLsizei width, GLsizei height)		
@@ -274,6 +275,36 @@ GLint DrawGLScene(GLvoid)									// Here's Where We Do All The Drawing
 
 //***********************************************************//
 
+	//MEMBUAT PLANET BUMI DAN BULAN
+    glLoadIdentity();
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+    glEnable(GL_BLEND);
+    glBindTexture(GL_TEXTURE_2D, texture[1]);
+    glTranslatef(0,0,-4);
+    glTranslatef(0,-1.5,0);
+
+    glDisable(GL_LIGHT1);
+    glEnable(GL_LIGHT0);
+
+    glDisable(GL_LIGHT0);
+    glEnable(GL_LIGHT1);
+	
+	glDisable(GL_BLEND);
+    glBindTexture(GL_TEXTURE_2D, texture[2]);
+
+	glTranslatef(EarthPos[0], EarthPos[1], EarthPos[2]);		// Merubah Posisi Bumi
+    glRotatef(rotateobiekt1,0,1,0);
+    glRotatef(-75,1,0,0);
+    gluSphere(Obiekt1,0.7,20,20);
+
+    glTranslatef(1,0,0.5);
+    glBindTexture(GL_TEXTURE_2D, texture[3]);
+    glRotatef(rotateobiekt1,1,1,1);
+    gluSphere(Obiekt1,0.1,20,20);
+	//AKHIR MEMBUAT PLANET DAN BUMI
+
+//***********************************************************//
+
 	//MEMBUAT PLANET SATURNUS
 	glLoadIdentity();
 	glDisable(GL_LIGHTING);
@@ -306,8 +337,6 @@ GLint DrawGLScene(GLvoid)									// Here's Where We Do All The Drawing
 	glDisable(GL_BLEND);
 	glEnable(GL_LIGHTING);
 	//AKHIR MEMBUAT PLANET SATURNUS
-	
-//***********************************************************//
 	
 	//ONEMORE
 	glLoadIdentity();
